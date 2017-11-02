@@ -4,7 +4,8 @@ Steps to Start Up the Project
 
 1. You must have installed a software that create a DB MySQL in local machine, such as Xampp. Make sure MySQL is active.
 2. You must start both projects: ServiceAPI (port: 5000) and SuperCoolApp (port:56000).
-3. Make sure you have installed Nodejs on your PC/MAC.
+2a. Make sure you have installed Nodejs on your PC/MAC.
+2b. Run npm install into SuperCoolApp directory to install Webkit packages.
 3. Make sure the above mentioned ports are available.
 4. With the first startup, TeamTask tables will be created with pre-set test values. Be sure to remove the code lines from Program.cs after first running, for future launches.
 5. As soon as the services are both running, go to http://localhost:56000 to show the project started.
