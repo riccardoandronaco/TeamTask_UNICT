@@ -21,6 +21,29 @@ namespace ServiceAPI
             }
         }
 
+        [HttpGet("workStatus")]
+        public async Task<IActionResult> GetWorkfromProjectID([FromQuery]string status,int id)
+        {
+            using (var context = new StudentsDbContext())
+            {
+                var Work = await context.Works.Where(x => (x.Status == status && x.IdProject == id)).ToListAsync();
+                if (Work == null) return NotFound();
+                return Ok(Work);
+            }
+        }
+
+
+        [HttpGet("work")]
+        public async Task<IActionResult> GetWorkfromId([FromQuery]int id)
+        {
+            using (var context = new StudentsDbContext())
+            {
+                var work = await context.Works.FirstOrDefaultAsync(x => x.Id == id);
+                if (work == null) return NotFound();
+                return Ok(work);
+            }
+        }
+
         /*[HttpGet("works")]
         public async Task<IActionResult> GetWorks()
         {
@@ -64,6 +87,17 @@ namespace ServiceAPI
             }
         }
 
+        [HttpPost("work")]
+        public async Task<IActionResult> UpdateWorkStatus([FromBody]Work Work)
+        {
+            using (var context = new StudentsDbContext())
+            {
+                context.Works.Update(Work);
+                await context.SaveChangesAsync();
+                return Ok();
+            }
+        }
+
         [HttpDelete("works")]
         public async Task<IActionResult> DeleteWork([FromQuery]int id)
         {
@@ -73,8 +107,6 @@ namespace ServiceAPI
                 context.Works.Remove(Work);
                 await context.SaveChangesAsync();
                 return Ok();
-
-
             }
         }
     }

@@ -9,8 +9,9 @@ namespace ServiceAPI.Dal
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime DeadLine { get; set; }
+        public string Status { get; set; }
         public string Allegati { get; set; }
         public int IdProject { get; set; }
+        public int Student_Id { get; set; }
     }
 }
