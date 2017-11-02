@@ -1,0 +1,12 @@
+﻿<h2> {{ title }} </h2>
+<form class="form-group col-sm-6">
+        <label for="Name">Name</label>
+		<input class="form-control" id="Name" name="Name" placeholder="Project's Name" [(ngModel)]="project.Name">
+		<label for="Description">Description</label>
+		<textarea class="form-control" id="Description" name="Description" placeholder="Insert Description" rows="10" [(ngModel)]="project.Description"></textarea>
+		<label for="Requirements">Requirements</label>
+		<input class="form-control" id="Requirements" name="Requirements" placeholder="Requirements" [(ngModel)]="project.Requirements">
+		<hr>
+		<button class="btn btn-info" type="button" (click)="save()">Submit</button>
+	    <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button>
+</form>

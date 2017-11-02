@@ -1,0 +1,12 @@
+﻿thead{
+	background-color:#35465c;
+	color:white;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+td{
+	vertical-align:middle;
+}

@@ -1,0 +1,16 @@
+<p *ngIf="!student"><em>Loading...</em></p>
+<h3>Student #{{student.id}}</h3>
+<div class="jumbotron" *ngIf="student" align="center">
+  
+  <img src="https://cdn1.iconfinder.com/data/icons/freeline/32/account_friend_human_man_member_person_profile_user_users-256.png" style="width:150px;">
+  <h1>{{student.name}}</h1>
+  <p>
+  Matricola: 
+  {{ student.matricola }}</p>
+  <p>
+  Date of Birth: 
+  {{ student.dateOfBirth }}</p>
+  <p>
+  Email: 
+  {{ student.email }}</p>
+</div>

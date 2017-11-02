@@ -1,0 +1,64 @@
+<h1>Works in Project {{ projectID }} <a class="btn btn-primary btn-sm" routerLink="/projects/{{ projectID }}/addwork">
+	<span class="glyphicons glyphicon-plus"></span> New Work</a>
+</h1>
+
+<p *ngIf="!works_waiting"><em>Loading...</em></p>
+<div class="row">
+<div class="section col-md-4" *ngIf="works_waiting">
+<h3 align="center">Waiting Works</h3>
+<div class="panel panel-default" *ngFor="let work of works_waiting">
+  <div class="panel-heading">#{{ work.id }}: {{ work.name }}</div>
+  <div class="panel-body">
+    <p><strong>Note</strong><br>{{ work.allegati }}</p>
+  </div>
+  <div align="center" style="margin-bottom:10px;">
+  	<button class="btn btn-xs btn-danger" type="button" (click)="delete(work.id)"><span class='glyphicon glyphicon-trash'></span> Delete</button>
+	<button class="btn btn-xs btn-info" type="button" (click)="show_modal(work.id)"><span class='glyphicon glyphicon-tag'></span> Assign</button>
+	<button class="btn btn-xs btn-success" type="button" (click)="complete(work.id)"><span class="glyphicon glyphicon-ok"></span> Completed</button>
+	</div></div>
+</div>
+<div class="section col-md-4" *ngIf="works_assigned">
+<h3 align="center">Assigned Works</h3>
+<div class="panel panel-default" *ngFor="let work of works_assigned">
+  <div class="panel-heading">#{{ work.id }}: {{ work.name }}</div>
+  <div class="panel-body" align="center">
+    <p><strong>Note</strong><br>{{ work.allegati }}</p>
+  <br>
+  	<button class="btn btn-xs btn-danger" type="button" (click)="delete(work.id)"><span class='glyphicon glyphicon-trash'></span> Delete</button>
+	<button class="btn btn-xs btn-info" type="button" (click)="show_modal(work.id)"><span class='glyphicon glyphicon-tag'></span> Assign</button>
+	<button class="btn btn-xs btn-success" type="button" (click)="complete(work.id)"><span class="glyphicon glyphicon-ok"></span> Completed</button>
+	</div>
+	<div class="panel-footer">
+	- Assigned to <a routerLink="/student/{{work.student_Id}}">#{{work.student_Id}} Student</a>
+	</div>
+	</div>
+</div>
+<div class="section col-md-4" *ngIf="works_completed">
+<h3 align="center">Completed Works</h3>
+<div class="panel panel-default" *ngFor="let work of works_completed">
+  <div class="panel-heading">#{{ work.id }}: {{ work.name }}</div>
+  <div class="panel-body">
+    <p><strong>Note</strong><br>{{ work.allegati }}</p>
+  </div>
+  <div align="center" style="margin-bottom:10px;">
+  	<button class="btn btn-xs btn-danger" type="button" (click)="delete(work.id)"><span class='glyphicon glyphicon-trash'></span> Delete</button>
+	<button class="btn btn-xs btn-info" type="button" (click)="show_modal(work.id)"><span class='glyphicon glyphicon-tag'></span> Assign</button>
+	<button class="btn btn-xs btn-success" type="button" (click)="complete(work.id)"><span class="glyphicon glyphicon-ok"></span> Completed</button>
+	</div>
+	<div class="panel-footer">
+	- Completed by <a routerLink="/student/{{work.student_Id}}">#{{work.student_Id}} Student</a>
+	</div></div><!-- closed panel -->
+</div><!-- closed section -->
+</div><!-- closed row -->
+
+<form class="AssignWork" [formGroup]="assign_work" (ngSubmit)="assign()" *ngIf="show_to_assign">
+<p *ngIf="!students"><em>Loading...</em></p>
+<h2>Assign Work with ID {{ to_assign }} to:</h2>
+<div class="form-group col-xs-6" *ngIf="students">
+  <label>Select Student:</label>
+  <select class="form-control" id="Student_Id" formControlName="Student_Id">
+    <option *ngFor="let student of students" value="{{ student.id }}">{{ student.name }}</option>
+  </select>
+  <button type="submit" class="btn btn-info" style="float:right;margin:10px;">Confirm</button>
+</div>
+</form>
